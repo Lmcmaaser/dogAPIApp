@@ -1,21 +1,22 @@
-const apiURL = 'https://dog.ceo/api/breeds/image/random/';
+"use strict";
+const url = 'https://dog.ceo/api/breeds/image/random/';
 
 
 function watchSubmit() {
     $('form').submit(event => {
       event.preventDefault();
-      const user = $("#dogs").val();
+      const num = $("#dogs").val();
       //Pass the number value to getDogImages
-      getDogImages(user);
+      getDogImages(num);
     });
 }
 
 
-function getDogImages(i) {
-    const url = `${apiURL}${user}`;
-    fetch(url)
+function getDogImages(a) {
+    const info = `${url}${a}`;
+    fetch(info)
     .then(response => response.json())
-    .then(responseJson => displayResults(responseJson))
+    .then(responseJson => console.log(responseJson))
     .catch(error => alert('Something went wrong. Try again later.'));
 }
 
