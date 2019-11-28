@@ -1,18 +1,18 @@
-const BASE_URL = 'https://dog.ceo/api/breeds/image/random/';
+const apiURL = 'https://dog.ceo/api/breeds/image/random/';
 
 
 function watchSubmit() {
     $('form').submit(event => {
       event.preventDefault();
-      const userInput = $("#dogs").val();
+      const user = $("#dogs").val();
       //Pass the number value to getDogImages
-      getDogImages(userInput);
+      getDogImages(user);
     });
 }
 
 
 function getDogImages(i) {
-    const url = `${BASE_URL}${userInput}`;
+    const url = `${apiURL}${user}`;
     fetch(url)
     .then(response => response.json())
     .then(responseJson => displayResults(responseJson))
