@@ -1,30 +1,30 @@
-'use strict';
+const BASE_URL = 'https://dog.ceo/api/breeds/image/random/';
 
-function getDogImages(input) {
-    if (input > 50) {
-        return alert("Please choose a number equal or less than 50");
-    } else {
-        fetch("https://dog.ceo/api/breeds/image/random/${input}")
-            .then(response => response.json())
-            .then(responseJson => console.log(responseJson))
-            .catch(error => alert('Something went wrong. Please try again later.'));
-    }
+
+function watchSubmit() {
+    $('form').submit(event => {
+      event.preventDefault();
+      const userInput = $("#dogs").val();
+      //Pass the number value to getDogImages
+      getDogImages(userInput);
+    });
 }
 
-function watchForm() {
-  $('form').submit(event => {
-    event.preventDefault();
-    let userInput = $("#dog-amount").val();
-    getDogImages(userInput);
-  });
+
+function getDogImages(i) {
+    const url = `${BASE_URL}${userInput}`;
+    fetch(url)
+    .then(response => response.json())
+    .then(responseJson => displayResults(responseJson))
+    .catch(error => alert('Something went wrong. Try again later.'));
 }
 
-function dogAPIApp(num) {
-  console.log('App loaded, watching for submit');
-  watchForm();
-};
 
-$(dogAPIApp);
+
+$(function() {
+    console.log("App loaded! Waiting for submit!");
+    watchSubmit();
+});
 
 /*'use strict';
 
